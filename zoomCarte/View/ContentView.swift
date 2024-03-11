@@ -61,7 +61,7 @@ struct ContentView: View {
             // le style de picker
             .pickerStyle((.inline))
           
-            Slider(value: $zoomCarte, in: 1.0...300.0, step: 1.0) {
+            Slider(value: $zoomCarte, in: 1.0...720, step: 1.0) {
                     Text("Zoom")
                 } minimumValueLabel: {
                     Text("Min")
