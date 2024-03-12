@@ -74,22 +74,22 @@ struct ContentView: View {
                 .frame(width:180)
                 .padding(.horizontal)
                 .onChange(of: zoomCarte) {
-                    zoomCarteRegion()
+                    zoomCarteRegion(latitude: villes[selectionVille].latitude, longitude: villes[selectionVille].longitude, latitudeDelta: villes[selectionVille].deltaLat, longitudeDelta: villes[selectionVille].deltaLong, zoom: zoomCarte)
                 }
         }
         Spacer()
     }
     // fonction de la gestion du zoom de la carte
-   private func zoomCarteRegion() {
+    private func zoomCarteRegion(latitude:Double, longitude:Double, latitudeDelta:CLLocationDegrees, longitudeDelta:CLLocationDegrees, zoom:Double) {
            positionCamera = .region(
                MKCoordinateRegion(
                    center: CLLocationCoordinate2D(
-                       latitude: villes[selectionVille].latitude,
-                       longitude: villes[selectionVille].longitude
+                       latitude: latitude,
+                       longitude:longitude
                    ),
                    span: MKCoordinateSpan(
-                       latitudeDelta: villes[selectionVille].deltaLat / zoomCarte,
-                       longitudeDelta: villes[selectionVille].deltaLong / zoomCarte
+                       latitudeDelta: latitudeDelta / zoom,
+                       longitudeDelta: longitudeDelta / zoom
                    )
                )
            )
