@@ -9,9 +9,11 @@ import SwiftUI
 import MapKit
 
 struct ContentView: View {
-    var villes:[VilleModele] = [VilleModele(nom: "Angers", latitude: 47.469746, longitude: -0.551544, deltaLat: 1, deltaLong: 1),VilleModele(nom: "Paris", latitude: 48.8568, longitude: 2.3522, deltaLat: 1, deltaLong: 1),VilleModele(nom: "Tokyo", latitude: 35.6897, longitude: 139.6922, deltaLat: 1, deltaLong: 1),VilleModele(nom: "Londre", latitude: 51.707222, longitude: -0.01275, deltaLat: 1, deltaLong: 1),VilleModele(nom: "Ottawa", latitude: 45.41117, longitude: -75.69812, deltaLat: 1, deltaLong: 1),VilleModele(nom: "Canberra", latitude: -35.282000, longitude: 149.128684, deltaLat: 1, deltaLong: 1),VilleModele(nom: "Pékin", latitude: 39.903315, longitude: 116.408703, deltaLat: 1, deltaLong: 1),VilleModele(nom: "Séoul", latitude: 37.551891, longitude: 126.991794, deltaLat: 1, deltaLong: 1), VilleModele(nom: "Doha", latitude: 25.291610, longitude: 51.530437, deltaLat: 1, deltaLong: 1), VilleModele(nom: "Odessa", latitude: 46.482526, longitude: 30.723309, deltaLat: 1, deltaLong: 1), VilleModele(nom: "Conakry", latitude: 9.509167, longitude: -13.712222, deltaLat: 1, deltaLong: 1)]
+    var villes:[VilleModele] = [VilleModele(nom: "Angers", latitude: 47.469228, longitude: -0.561204, deltaLat: 1, deltaLong: 1),VilleModele(nom: "Paris", latitude: 48.8568, longitude: 2.3522, deltaLat: 1, deltaLong: 1),VilleModele(nom: "Tokyo", latitude: 35.6897, longitude: 139.6922, deltaLat: 1, deltaLong: 1),VilleModele(nom: "Londres", latitude: 51.509093, longitude: -0.094151, deltaLat: 1, deltaLong: 1),VilleModele(nom: "Ottawa", latitude: 45.424325, longitude: -75.690222, deltaLat: 1, deltaLong: 1),VilleModele(nom: "Canberra", latitude: -35.307029, longitude: 149.124962, deltaLat: 1, deltaLong: 1),VilleModele(nom: "Pékin", latitude: 39.903315, longitude: 116.408703, deltaLat: 1, deltaLong: 1),VilleModele(nom: "Séoul", latitude: 37.553830, longitude: 126.981611, deltaLat: 1, deltaLong: 1), VilleModele(nom: "Doha", latitude: 25.291610, longitude: 51.530437, deltaLat: 1, deltaLong: 1), VilleModele(nom: "Odessa", latitude: 46.470211, longitude: 30.730639, deltaLat: 1, deltaLong: 1), VilleModele(nom: "Conakry", latitude: 9.507627, longitude: -13.712196, deltaLat: 1, deltaLong: 1)]
         // trie le tableau par ordre alphabetique
         .sorted(by:{$0.nom < $1.nom})
+    
+    
     
     @State var selectionVille:Int = 0
     @State private var zoomCarte: Double = 1.0
@@ -28,7 +30,15 @@ struct ContentView: View {
                 MapPitchToggle()
             }
             .mapStyle(.hybrid(elevation: .realistic))
-        
+        // A chaque fois que la carte bouge par exemple les coordonnées de la région sont retournées.
+            .onMapCameraChange(frequency: .continuous){ context in
+                print(context.region)
+                //                let nouvelleRegion = context.region
+                //                let centerCoordinate = nouvelleRegion.center
+                //                let span = nouvelleRegion.span
+                
+
+            }
         VStack {
             HStack{
                 Spacer()
